@@ -19,10 +19,12 @@ public class Scheduler{
     private String finPath = null;
     private int simCnt = 0;
     private int dim = 0;
+    private int minPkt = 0;
+    private int maxPkt = 0;
 
     private Random rand = null;
 
-    public Scheduler(String finPath, int simCnt, String algo){
+    public Scheduler(String finPath, int simCnt, String algo, int minPkt, int maxPkt){
         this.sink = new Sink(Configure.SINK_LOC, Configure.SINK_RANGE, Configure.SINK_NUM);        
 
         this.userNodes = new UserNodes();
@@ -31,10 +33,12 @@ public class Scheduler{
         this.dim = Configure.DIM;
         this.rand = new Random();
         this.algo = algo;
+        this.minPkt = minPkt;
+        this.maxPkt = maxPkt;
     }
 
     private int getRandPktCnt(){
-        return rand.nextInt(Configure.MAX_PKT - Configure.MIN_PKT + 1) + Configure.MIN_PKT;
+        return rand.nextInt(this.maxPkt - this.minPkt + 1) + this.minPkt;
     }
 
 
@@ -212,16 +216,18 @@ public class Scheduler{
     }
 
     public static void main(String args[]){
-        if(args.length < 3){
-            System.out.println("Need 3 args: trace file location, simulation round (in addition to sink knowledge), and algorithm name (minerva/fifo/random/distance).");
+        if(args.length < 5){
+            System.out.println("Need 5 args: trace file location, simulation round (in addition to sink knowledge), algorithm name (minerva/fifo/random/distance), MIN_PKT, MAX_PKT.");
             return;
         }
         //System.out.println(args[0] + ", " + args[1]);
         String path = args[0];
         int simCnt = Integer.parseInt(args[1]);
         String algo = args[2];
+        int minPkt = Integer.parseInt(args[3]);
+        int maxPkt = Integer.parseInt(args[4]);
 
-        Scheduler s = new Scheduler(path, simCnt, algo);
+        Scheduler s = new Scheduler(path, simCnt, algo, minPkt, maxPkt);
         s.simulate();        
     }
 }

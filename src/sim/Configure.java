@@ -9,8 +9,8 @@ public class Configure{
     public static final int SINK_NUM = 2;
     public static final double SINK_LOC [][] = {{39.9, 116.4}, {40.08, 116.58}};
     public static final double SINK_RANGE = 100; //in meter
-    public static final int MIN_PKT = 20; //minimum possible number of data points sended during one transmission
-    public static final int MAX_PKT = 40;
+    //public static final int MIN_PKT = 20; //minimum possible number of data points sended during one transmission
+    //public static final int MAX_PKT = 40;
     public static final double INTERVAL = 0.005;
     public static final double HI_RATIO = 0.5;
     public static final double MIN_LAT = 39.5;
