@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<project name = "secon" default="all" basedir="./">
+    <target name = "clean">
+        <delete dir="build/"/>
+        <mkdir dir="build/"/>
+    </target>
+    
+    <target name = "minerva" depends = "clean">
+        <javac srcdir="src/minerva/" destdir="build/" includeantruntime="false"/>
+    </target>
+
+    <target name = "sim" depends = "minerva">
+        <javac srcdir="src/sim/" destdir="build/" includeantruntime="false"/>
+    </target>
+
+    <target name = "all" depends="sim">
+    </target>
+
+    
+</project>
