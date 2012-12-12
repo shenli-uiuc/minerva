@@ -66,8 +66,8 @@ public class Scheduler{
         int pktCnt = getRandPktCnt();
 
         if(pktCnt < order.size()){
-            sink.appendData(new ArrayList(order.subList(0, pktCnt)));
-            user.updateTrace(new ArrayList(order.subList(pktCnt, order.size())));
+            sink.appendData(new ArrayList<KAry>(order.subList(0, pktCnt)));
+            user.updateTrace(new ArrayList<KAry>(order.subList(pktCnt, order.size())));
         }
         else{
             sink.appendData(order);
@@ -82,12 +82,12 @@ public class Scheduler{
         Collections.shuffle(userData, new Random(System.nanoTime()));
         int pktCnt = getRandPktCnt();
         if(pktCnt < userData.size()){
-            sink.appendData(new ArrayList(userData.subList(0, pktCnt)));
-            user.updateTrace(new ArrayList(userData.subList(pktCnt, userData.size())));
+            sink.appendData(new ArrayList<KAry>(userData.subList(0, pktCnt)));
+            user.updateTrace(new ArrayList<KAry>(userData.subList(pktCnt, userData.size())));
         }
         else{
             sink.appendData(userData);
-            user.updateTrace(new ArrayList());
+            user.updateTrace(new ArrayList<KAry>());
         }
     }
 
@@ -95,12 +95,12 @@ public class Scheduler{
         ArrayList<KAry> userData = user.getTrace();
         int pktCnt = getRandPktCnt();
         if(pktCnt < userData.size()){
-            sink.appendData(new ArrayList(userData.subList(0, pktCnt)));
-            user.updateTrace(new ArrayList(userData.subList(pktCnt, userData.size())));
+            sink.appendData(new ArrayList<KAry>(userData.subList(0, pktCnt)));
+            user.updateTrace(new ArrayList<KAry>(userData.subList(pktCnt, userData.size())));
         }
         else{
             sink.appendData(userData);
-            user.updateTrace(new ArrayList());
+            user.updateTrace(new ArrayList<KAry>());
         }
     }
 
@@ -213,7 +213,7 @@ public class Scheduler{
 
     public static void main(String args[]){
         if(args.length < 3){
-            System.out.println("Need 3 args: trace file location, simulation round, algorithm name (minerva/fifo/random/distance).");
+            System.out.println("Need 3 args: trace file location, simulation round (in addition to sink knowledge), and algorithm name (minerva/fifo/random/distance).");
             return;
         }
         //System.out.println(args[0] + ", " + args[1]);
